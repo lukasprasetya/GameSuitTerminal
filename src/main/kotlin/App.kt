@@ -34,8 +34,22 @@ class App {
             println("Input Player $player Choice: ")
             var playerChoice = IOUtils.readString().uppercase()
 
+            while (!playerChoiceValidation(playerChoice)) {
+                println("--------------------------------")
+                println("Input only ROCK, SCISSOR, PAPER")
+                println("Please input your choice again : ")
+                playerChoice = IOUtils.readString().uppercase()
+            }
             playersData.add(PlayerDataModel(playerName, playerChoice))
         }
+    }
+
+    fun playerChoiceValidation(playerInput: String): Boolean {
+        var result = false
+        if (playerInput == rock || playerInput == scissor || playerInput == paper) {
+            result = true
+        }
+        return result
     }
 
     fun run() {

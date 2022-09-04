@@ -52,9 +52,39 @@ class App {
         return result
     }
 
+    private fun checkResult() {
+        val player1Input = playersData[0].playerChoice
+        val player2Input = playersData[1].playerChoice
+
+        if (player1Input == player2Input) {
+            result = "DRAW!!!"
+        } else if ((player1Input == rock && player2Input == scissor) ||
+            (player1Input == scissor && player2Input == paper) ||
+            (player1Input == paper && player2Input == rock)
+        ) {
+            result = "${playersData[0].playerName} Win!!!"
+        } else if ((player1Input == scissor && player2Input == rock) ||
+            (player1Input == paper && player2Input == scissor) ||
+            (player1Input == rock && player2Input == paper)
+        ) {
+            result = "${playersData[1].playerName} Win!!!"
+        } else {
+            println("error")
+        }
+    }
+
+    fun printResult() {
+        checkResult()
+        println()
+        println("======================================")
+        println("The Result is : $result")
+        println("======================================")
+    }
+
     fun run() {
         printHeader()
         inputPlayer()
+        printResult()
     }
 
     companion object {
